@@ -10,16 +10,17 @@
     <script src="https://npmcdn.com/aframe-layout-component@3.0.1"></script>
     <script src="https://npmcdn.com/aframe-template-component@3.1.1"></script>
     <script src="js/set-image.js"></script>
+	
+   
+    <script src="vendor/aframe-bmfont-component.min.js"></script>
+    <script src="assets/data/waves.js"></script>
+ 
   </head>
   <body>
     <a-scene>
 	
-	<div class="center" data-bind="css: { noHub: !hub() }">
-      <div class="currentPanoWrapper">
-        <div class="currentPano" data-bind="text: currentSceneName">Al Boom Tourist Village, Lounge Area</div>
-      </div>
-    </div>
       <a-assets>
+		
         <img id="city" crossorigin="anonymous" src="img/city.jpg">
         <img id="city-thumb" crossorigin="anonymous" src="img/thumb-city.jpg">
         <img id="cubes-thumb" crossorigin="anonymous" src="img/thumb-cubes.jpg">
@@ -27,33 +28,11 @@
         <audio id="click-sound" crossorigin="anonymous" src="https://cdn.aframe.io/360-image-gallery-boilerplate/audio/click.ogg"></audio>
         <img id="cubes" crossorigin="anonymous" src="img/cubes.jpg">
         <img id="sechelt" crossorigin="anonymous" src="img/sechelt.jpg">
-		<img id="bluecute" crossorigin="anonymous" src="img/Animals_Wolf-512.png">
+		<img id="bluecute" crossorigin="anonymous" src="img/blue-cute-icon.png">
 		<img id="bluecute-thume" crossorigin="anonymous" src="img/blue-cute-icon.png">
-
-		 <script id="link1" type="text/html">
-          <a-entity class="link1"
-             geometry="primitive: circle; radius: 1"
-			material="shader: flat; src: ${thumb}"
-           
-            set-image22="on: click; target: #image-360; src: ${src}"
-            sound="on: click; src: #click-sound"
-            ></a-entity>
-			
-			
-			 
-        </script>
-		<script id="link2" type="text/html">
-          <a-entity class="link1"
-             geometry="primitive: circle; radius: 0.5"
-			material="shader: flat; src: ${thumb}"
-           
-            set-image22="on: click; target: #image-360; src: ${src}"
-            sound="on: click; src: #click-sound"
-            ></a-entity>
-			
-			
-			 
-        </script>
+		
+		 <img id="place" crossorigin="anonymous" src="img/360_2.jpg">
+		
         <!-- Image link template to be reused. -->
         <script id="link" type="text/html">
           <a-entity class="link"
@@ -61,9 +40,7 @@
             material="shader: flat; src: ${thumb}"
            
             set-image="on: click; target: #image-360; src: ${src}"
-            sound="on: click; src: #click-sound"></a-entity>
-			
-			 
+            sound="on: click; src: #click-sound"></a-entity>		 
         </script>
 		
 		
@@ -79,21 +56,20 @@
       </a-entity>
 	  
 	  <a-entity id="links1" layout="type: line; margin: 1.5" position="-3 -1 -4">      
-        <a-entity template="src: #link" data-src="#city" data-thumb="#city-thumb"></a-entity>    
+        <a-entity template="src: #link" data-src="#place" data-thumb="#city-thumb"></a-entity>    
       </a-entity>
 	  
-	  <a-entity id="links2" layout="type: line; margin: 1" position="-11 0 -4" rotation = "0 100 0">
- 
-		<a-entity template="src: #link1" data-src="#city" data-thumb="#bluecute"></a-entity>
+	  <a-entity id="links2" position="-6 -1 -2" rotation = "0 100 0" set-image="on: click; target: #image-360; src: #city">
+		 <a-entity collada-model="url(robo-dae/robo.dae)"></a-entity>
+		
       </a-entity>
 	  
-	   <a-entity id="links3" layout="type: line; margin: 1" position="-11 0 -4" rotation = "0 100 0">
- 
-		<a-entity template="src: #link2" data-src="#city" data-thumb="#bluecute"></a-entity>
+	  <a-entity class="link1" id="links2" position="0 -1 -4" rotation = "-6 -1 -4" set-image="on: click; target: #image-360; src: #place">
+		  <a-image src=#bluecute></a-image>	
       </a-entity>
 	  
-	  
-
+	 
+		
       <!-- Camera + cursor. -->
       <a-entity camera look-controls>
         <a-cursor id="cursor"
@@ -102,7 +78,7 @@
           event-set__1="_event: mouseenter; color: springgreen"
           event-set__2="_event: mouseleave; color: red"
           fuse="true"
-          raycaster="objects: .link; .link1 "></a-cursor>
+          raycaster="objects: .link; .link1"></a-cursor>
       </a-entity>
     </a-scene>
   </body>
